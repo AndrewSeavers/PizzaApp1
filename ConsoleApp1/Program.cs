@@ -16,15 +16,15 @@ namespace ConsoleApp1
 
             if (pizza == "cheese and tomato" || pizza == "margherita")
             {
-                Console.WriteLine("Suitable for vegetarians");
+                Print("Suitable for vegetarians", ConsoleColor.Green);
             }
             else if (pizza == "pepperoni" || pizza == "meat feast")
             {
-                Console.WriteLine("Not suitable for vegetarians");
+                Print("Not suitable for vegetarians", ConsoleColor.Red);
             }
             else
             {
-                Console.WriteLine("Unknown pizza. May contain meat!");
+                Print("Unknown pizza. May contain meat!", ConsoleColor.DarkRed);
             }
             Console.ReadLine();
 
@@ -36,19 +36,42 @@ namespace ConsoleApp1
             {
                 case "cheese and tomato":
                 case "margherita":
-                    Console.WriteLine("Suitable for vegetarians");
+                    Print("Suitable for vegetarians", ConsoleColor.Green);
                     break;
                 case "meat feast":
                 case "pepperoni":
-                    Console.WriteLine("Not suitable for vegetarians");
+                    Print("Not suitable for vegetarians", ConsoleColor.Red);
                     break;
                 default:
-                    Console.WriteLine("Pizza unknown, may contain meat!");
+                    Print("Pizza unknown, may contain meat!", ConsoleColor.DarkRed);
                     break;
             }
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// Writes a line or just writes the parameters
+        /// </summary>
+        /// <param name="message">The parameter that will be written</param>
+        /// <param name="colour">The colour that the given message will be</param>
+        /// <param name="newLine">A boolean that decides whether the message should be on a new line or not</param>
+        private static void Print(string message, ConsoleColor colour, bool newLine = true)
+        {
+            Console.ForegroundColor = colour;
+
+            if (newLine)
+                Console.WriteLine(message);
+            else
+                Console.Write(message);
+
+            Console.ResetColor();
+        }
+
+        /// <summary>
+        /// Ask a question
+        /// </summary>
+        /// <param name="question">The question to ask</param>
+        /// <returns>The answer to the question</returns>
         private static string Input(string question)
         {
             Console.WriteLine(question);
